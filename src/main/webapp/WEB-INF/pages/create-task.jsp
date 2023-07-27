@@ -13,7 +13,7 @@
 <body>
     <%@include file="header.html"%>
 
-    <form action="todo/create" method="post">
+    <form action="/create-task" method="post">
         <label for="title">Title: </label>
         <input type="text" id="title" name="title">
         <label for="priority">Priority: </label>

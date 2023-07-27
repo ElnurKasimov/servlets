@@ -24,17 +24,14 @@ public class CreateTaskServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/create-task.jsp");
-        request.setAttribute("task", TaskRepository.readAll());
         requestDispatcher.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String title = request.getParameter("title");
         Priority priority = Priority.valueOf(request.getParameter("priority"));
-
         Task task = new Task(title, priority);
-
         taskRepository.create(task);
-
+        response.sendRedirect("/create-task");
     }
 }
