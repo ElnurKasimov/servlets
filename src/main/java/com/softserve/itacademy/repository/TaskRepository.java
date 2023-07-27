@@ -7,12 +7,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TaskRepository {
-    private final List<Task> todo;
+    private static List<Task> todo = null;
 
     private TaskRepository() {
         todo = new LinkedList<>();
         todo.add(new Task("Task #1", Priority.MEDIUM));
         todo.add(new Task("Task #2", Priority.LOW));
+    }
+
+    public static List<Task> readAll() {
+        return todo;
     }
 
     public boolean create(Task task) {
