@@ -69,4 +69,13 @@ public class TaskRepository {
         }
         return taskRepository;
     }
+
+    public Task findByTitle(String title) {
+        for(Task task : todo) {
+            if(task.getTitle().equalsIgnoreCase(title)) {
+                return task;
+            }
+        }
+        return null;
+    }
 }
