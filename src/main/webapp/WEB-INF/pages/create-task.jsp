@@ -8,7 +8,7 @@
     <style>
         <%@include file="../styles/main.css"%>
     </style>
-    
+
 </head>
 <body>
     <%@include file="header.html"%>

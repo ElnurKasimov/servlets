@@ -15,24 +15,16 @@ import java.io.IOException;
 public class UpdateTaskServlet extends HttpServlet {
 
     private TaskRepository taskRepository;
-    private  int taskId;
+    private int taskId;
 
     @Override
     public void init() {
         taskRepository = TaskRepository.getTaskRepository();
     }
-//
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-//
-//    }
-//
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-//
-//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         taskId = Integer.parseInt(request.getParameter("id"));
+        taskId = Integer.parseInt(request.getParameter("id"));
         Task task = taskRepository.read(taskId);
         if (task != null) {
             request.setAttribute("task", task);
