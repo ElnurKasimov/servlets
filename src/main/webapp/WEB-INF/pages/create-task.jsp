@@ -19,14 +19,14 @@
     <p><%= request.getAttribute("errorMessage") %></p>
     <% } %>
 
-    <form action="/create-task" method="post">
+    <form action="/create-task" method="post" id="create-task">
         <table>
             <tr>
                 <td>
                     <label for="title">Title: </label>
                 </td>
                 <td>
-                    <input type="text" id="title" name="title">
+                    <input type="text" id="title" name="title" required>
                 </td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@
                     <label for="priority">Priority: </label>
                 </td>
                 <td>
-                    <select name="priority" id="priority">
+                    <select name="priority" id="priority" form="create-task" required>
                         <option value="LOW">Low</option>
                         <option value="MEDIUM">Medium</option>
                         <option value="HIGH">High</option>
