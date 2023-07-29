@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/edit-task?id=<task ID>")
+@WebServlet(value = "/edit-task")
 public class UpdateTaskServlet extends HttpServlet {
 
     private TaskRepository taskRepository;
