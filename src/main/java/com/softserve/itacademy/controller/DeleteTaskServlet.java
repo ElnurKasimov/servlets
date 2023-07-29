@@ -22,8 +22,20 @@ public class DeleteTaskServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        taskRepository.delete(Integer.parseInt(request.getParameter("id")));
-        response.sendRedirect("/tasks-list");
+        int taskId = Integer.parseInt(request.getParameter("id"));
+        boolean deleted = taskRepository.delete(taskId);
+
+        if (deleted) {
+            response.sendRedirect(request.getContextPath() + "/tasks-list");
+        } else {
+            request.setAttribute("errorMessage", "Task with the specified ID does not exist.");
+            request.getRequestDispatcher("/WEB-INF/pages/tasks-list.jsp").forward(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect(request.getContextPath() + "/tasks-list");
     }
 }
 
