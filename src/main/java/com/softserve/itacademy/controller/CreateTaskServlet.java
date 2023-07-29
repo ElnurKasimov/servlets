@@ -32,6 +32,14 @@ public class CreateTaskServlet extends HttpServlet {
         Priority priority = Priority.valueOf(request.getParameter("priority"));
 
         Task existingTask = taskRepository.findByTitle(title);
+
+        if (title == null || title.trim().isEmpty()) {
+            request.setAttribute("errorMessage", "Task name cannot be empty!");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/create-task.jsp");
+            requestDispatcher.forward(request, response);
+            return;
+        }
+
         if (existingTask != null) {
             request.setAttribute("errorMessage", "Task with a given name already exists!");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/create-task.jsp");
