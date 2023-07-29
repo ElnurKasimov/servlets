@@ -13,7 +13,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <tomcat.version>9.0.64</tomcat.version>
+    <tomcat.version>9.0.78</tomcat.version>
   </properties>
 
   <dependencies>

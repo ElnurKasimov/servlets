@@ -22,7 +22,7 @@ public class DeleteTaskServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         TaskRepository.delete(Integer.parseInt(request.getParameter("id")));
-        response.sendRedirect(request.getContextPath() + "/create-task");
+        response.sendRedirect(request.getContextPath() + "/tasks-list");
     }
 }
 
