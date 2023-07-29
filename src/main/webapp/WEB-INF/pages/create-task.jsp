@@ -26,7 +26,7 @@
                     <label for="title">Name: </label>
                 </td>
                 <td>
-                    <input type="text" id="title" value="name" name="title" required>
+                    <input type="text" id="title" name="title" required>
                 </td>
             </tr>
             <tr>
