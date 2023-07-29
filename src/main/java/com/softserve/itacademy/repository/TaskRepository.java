@@ -27,7 +27,7 @@ public class TaskRepository {
         return false;
     }
 
-    public Task read(int id) {
+    public static Task read(int id) {
         return todo.stream().filter(task -> task.getId() == id).findFirst().orElse(null);
     }
 
