@@ -23,7 +23,7 @@
         <table>
             <tr>
                 <td>
-                    <label for="title">Title: </label>
+                    <label for="title">Name: </label>
                 </td>
                 <td>
                     <input type="text" id="title" name="title" required>
