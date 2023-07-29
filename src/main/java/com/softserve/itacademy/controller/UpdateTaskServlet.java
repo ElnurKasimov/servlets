@@ -15,7 +15,7 @@ import java.io.IOException;
 public class UpdateTaskServlet extends HttpServlet {
 
     private TaskRepository taskRepository;
-    private int taskId;
+    private Task task;
 
     @Override
     public void init() {
@@ -24,41 +24,20 @@ public class UpdateTaskServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        taskId = Integer.parseInt(request.getParameter("id"));
-        Task task = taskRepository.read(taskId);
+        task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
         if (task != null) {
             request.setAttribute("task", task);
             request.getRequestDispatcher("/WEB-INF/pages/edit-task.jsp").forward(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/create-task");
+            request.getRequestDispatcher("/WEB-INF/pages/error.jsp").forward(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Task task = taskRepository.read(taskId);
-
-        if (task != null) {
-            String title = request.getParameter("title");
-            Priority priority = Priority.valueOf(request.getParameter("priority"));
-
-            if (title != null && priority != null) {
-                Task existingTask = taskRepository.findByTitle(title);
-
-                if (existingTask != null && existingTask.getId() != taskId) {
-                    request.setAttribute("errorMessage", "Task with a given name already exists!");
-                } else {
-                    task.setTitle(title);
-                    task.setPriority(priority);
-                    taskRepository.update(task);
-                }
-            } else {
-                request.setAttribute("errorMessage", "Please provide all the necessary details!");
-            }
-        } else {
-            response.sendRedirect(request.getContextPath() + "/create-task");
-        }
-        doGet(request, response);
+        task.setTitle(request.getParameter("title"));
+        task.setPriority(Priority.valueOf(request.getParameter("priority")));
+        taskRepository.update(task);
+        response.sendRedirect("/tasks-list");
     }
-
 }

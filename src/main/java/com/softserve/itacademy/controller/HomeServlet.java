@@ -12,8 +12,13 @@ import java.io.IOException;
 public class HomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/home.jsp");
-        requestDispatcher.forward(request, response);
+        String path = request.getServletPath();
+        if ("/".equals(path) || "/home".equals(path)) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/home.jsp");
+            requestDispatcher.forward(request, response);
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Wrong URL");
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
