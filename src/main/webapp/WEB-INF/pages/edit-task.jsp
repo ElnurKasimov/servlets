@@ -14,12 +14,13 @@
 <%@include file="header.html" %>
 
 <h2>Edit existing Task</h2>
-
-<% if (request.getAttribute("errorMessage") != null) { %>
-<p><%= request.getAttribute("errorMessage") %>
-</p>
-<% } %>
-
+<%
+    if (request.getAttribute("isEdited") != null && !((boolean) request.getAttribute("isEdited"))) {
+%>
+<p>Task with a given name already exists!</p>
+<%
+    }
+%>
 <form action="/edit-task" method="post">
     <%
         Task task = (Task) request.getAttribute("task");
@@ -46,16 +47,18 @@
                 <label for="priority">Priority: </label>
             </td>
             <td>
-                <select name="priority" id="priority" value="<%=task.getPriority() %>">
-                    <option value="LOW">Low</option>
-                    <option value="MEDIUM">Medium</option>
-                    <option value="HIGH">High</option>
+                <select id="priority" name="priority">
+                    <% for (Priority priority : Priority.values()) { %>
+                    <option value="<%= priority %>" <% if (request.getAttribute("priority") == priority) { %>selected<% } %>>
+                        <%= priority %>
+                    </option>
+                    <% } %>
                 </select>
             </td>
         </tr>
         <tr>
             <td>
-                <input type="submit" value="Edit">
+                <input type="submit" value="Update">
             </td>
             <td>
                 <input type="reset" value="Clear">
@@ -63,6 +66,5 @@
         </tr>
     </table>
 </form>
-
 </body>
 </html>
