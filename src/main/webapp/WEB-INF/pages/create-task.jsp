@@ -26,7 +26,7 @@
                     <label for="title">Name: </label>
                 </td>
                 <td>
-                    <input type="text" id="title" name="title" required>
+                    <input type="text" id="title" value="name" name="title" required>
                 </td>
             </tr>
             <tr>
@@ -34,9 +34,9 @@
                     <label for="priority">Priority: </label>
                 </td>
                 <td>
-                    <select name="priority" id="priority" form="create-task" required>
+                    <select name="priority" id="priority" form="create-task">
                         <option value="LOW">Low</option>
-                        <option value="MEDIUM">Medium</option>
+                        <option value="MEDIUM"selected>Medium</option>
                         <option value="HIGH">High</option>
                     </select>
                 </td>

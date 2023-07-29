@@ -29,9 +29,8 @@ public class CreateTaskServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String title = request.getParameter("title");
-        Priority priority = Priority.valueOf(request.getParameter("priority"));
-
-        Task existingTask = taskRepository.findByTitle(title);
+        String priorityString = request.getParameter("priority");
+        Priority priority = Priority.valueOf(priorityString);
 
         if (title == null || title.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Task name cannot be empty!");
@@ -40,6 +39,8 @@ public class CreateTaskServlet extends HttpServlet {
             return;
         }
 
+        Task existingTask = taskRepository.findByTitle(title);
+
         if (existingTask != null) {
             request.setAttribute("errorMessage", "Task with a given name already exists!");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/pages/create-task.jsp");
@@ -47,7 +48,7 @@ public class CreateTaskServlet extends HttpServlet {
         } else {
             Task task = new Task(title, priority);
             taskRepository.create(task);
-            response.sendRedirect("/create-task");
+            response.sendRedirect(request.getContextPath() + "/create-task");
         }
     }
 }
