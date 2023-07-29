@@ -11,8 +11,12 @@
 
 </head>
 <body>
+<%@include file="header.html" %>
 
+<h1>Task with ID '<%=request.getParameter("id")%>' not found in To-Do List!</h1>
 
-
+<h2>url: <%=request.getAttribute("url")%>
+</h2>
 </body>
 </html>
+
