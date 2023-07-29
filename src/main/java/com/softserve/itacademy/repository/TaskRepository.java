@@ -45,7 +45,7 @@ public class TaskRepository {
         return false;
     }
 
-    public boolean delete(int id) {
+    public static boolean delete(int id) {
         Task task = read(id);
         if (task != null) {
             return todo.remove(task);
