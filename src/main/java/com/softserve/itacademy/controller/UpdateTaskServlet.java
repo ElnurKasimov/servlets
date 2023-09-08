@@ -32,7 +32,6 @@ public class UpdateTaskServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/pages/error.jsp").forward(request, response);
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         task.setTitle(request.getParameter("title"));
